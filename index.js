@@ -13,7 +13,7 @@ const postRoutes = require('./routes/posts')
 const categoryRoutes = require('./routes/categories')
 
 const mongoDb = process.env.MONGO_URI
-mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true  });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
     cb(null, "images")
   },
   filename: (req, file, cb) => {
-    cb(null, req,body.name)
+    cb(null, req.body.name)
   }
 })
 
@@ -40,6 +40,6 @@ app.use('/api/posts', postRoutes)
 app.use('/api/categories', categoryRoutes)
 
 
-app.listen("3000", () => {
+app.listen("5000", () => {
   console.log("Backend is running")
 })
