@@ -60,7 +60,7 @@ router.delete('/:id', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
-    res.status(200).json(others)
+    res.status(200).json(post)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -69,15 +69,15 @@ router.get('/:id', async (req, res) => {
 // Get all posts
 router.get('/', async (req, res) => {
   const username = req.query.user
-  const catName = req.query.categories
+  const categories = req.query.categories
   try {
     let posts;
     if (username) {
       posts = await Post.find({ username });
-    } else if (catName) {
+    } else if (categories) {
       posts = await Post.find({
         categories: {
-          $in: [catName],
+          $in: [categories],
         },
       });
     } else {

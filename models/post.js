@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema({
     require: true,
     unique: true,
   },
-  description: {
+  desc: {
     type: String,
     required: true,
   },
